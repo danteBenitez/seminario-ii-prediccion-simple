@@ -13,8 +13,21 @@ let model = await initModel();
 trainButton.addEventListener('click', async () => {
     trainLoading.classList.remove("visually-hidden");
     trainButton.setAttribute('disabled', '');
+    const metrics = ['loss', 'val_loss', 'acc', 'val_acc'];
+    const container = {
+        name: 'Loss history',
+        tab: "Loss",
+        styles: {
+            height: '1000px'
+        }
+    };
+    const callbacks = tfvis.show.fitCallbacks(container, metrics);
     setTimeout(async () => {
-        await trainModel(model);
+        await trainModel(model, {
+            config: {
+                callbacks: callbacks
+            }
+        });
         Swal.fire({
             icon: 'success',
             title: 'Entrenamiento terminado',
