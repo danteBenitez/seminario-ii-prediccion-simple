@@ -31,7 +31,7 @@ predictButton.addEventListener('click', async () => {
     const input = tf.tensor2d([value], [1, 1]);
     const prediction = await model.predict(input);
     const predictionData = await prediction.data();
-    output.textContent = `El resultado de predecir para ${value} predijo ${predictionData}`;
+    output.textContent = `El resultado de predecir para ${value} es ${predictionData}`;
 });
 
 
